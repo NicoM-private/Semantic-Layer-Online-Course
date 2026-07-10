@@ -2,36 +2,58 @@ models:
   - name: fct_order_items
     semantic_model:
       enabled: true
-    agg_time_dimension: ordered_at
+    config:
+      contract: 
+        enforced: true
+    agg_time_dimension: ordered_at_dt
     description: |
       Items contatined in each order. The grain of the table is one row per order item.
     columns: 
       ## entities
       - name: order_item_id
+        data_type: varchar 
+        constraints:
+          - type: not_null        
         entity:
           type: primary
           name: order_item_id
       - name: order_id
+        data_type: varchar 
+        constraints:
+          - type: not_null
         entity:
           type: foreign
           name: order_id
       - name: product_id
+        data_type: varchar 
+        constraints:
+          - type: not_null
         entity:
           type: foreign
           name: product_id
 
       ## dimensions
-      - name: ordered_at
+      - name: ordered_at_dt
         dimension:
           type: time
+        data_type: timestamp 
         granularity: day
       - name: is_food_item
         dimension:
           type: categorical
+        data_type: integer
       - name: is_drink_item
         dimension:
           type: categorical
-          
+        data_type: integer   
+      - name: product_price
+        dimension:
+          type: categorical
+        data_type: number(20,2)       
+      - name: supply_cost
+        dimension:
+          type: categorical
+        data_type: number(20,2)
     ## simple metrics
     metrics:
       - name: product_price

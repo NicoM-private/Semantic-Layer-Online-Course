@@ -1,0 +1,9 @@
+groups:
+  - name: finance
+    owner: 
+      name: Nicolas Michaud
+      email: nicolas.michaud@sn-invent.de
+  - name: product
+    owner: 
+      name: van Nguyenvan
+      email: van.nguyenvan@toldit.co
