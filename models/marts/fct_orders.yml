@@ -1,8 +1,23 @@
 models:
   - name: fct_orders
     config:
+      group: finance
+      access: protected
       contract: 
         enforced: true
+    latest_version: 1
+    versions:
+      - v: 1
+#        config: 
+#          alias: fct_orders
+      - v: 2
+        columns: 
+          - name: order_amount
+            data_type: number(20,2)
+          - name: location_ordered_at
+            data_type: date
+          - include: all
+            exclude: [order_total]
     semantic_model:
       enabled: true
     agg_time_dimension: ordered_at
